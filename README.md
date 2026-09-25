@@ -2,6 +2,7 @@
 ### *Deterministic, zero-dependency engine turning structured JSON into retro 9:16 thermal receipts (SVG & ASCII).*
 
 <p align="center">
+  <a href="https://rynia.github.io/receipt-renderer/"><img src="https://img.shields.io/badge/Live_Playground-rynia.github.io%2Freceipt--renderer-10B981?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Playground" /></a>
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License" />
   <img src="https://img.shields.io/badge/TypeScript-Strict-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge" alt="Zero Dependencies" />

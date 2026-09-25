@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>receipt-renderer — Interactive Playground</title>
+  <meta name="description" content="Turn structured JSON into retro 9:16 thermal receipts (SVG & ASCII) with zero dependencies.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧾</text></svg>">
+  <style>
+    :root {
+      --bg: #09090D;
+      --panel: #13131A;
+      --border: #232330;
+      --accent: #10B981;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --font-mono: "SF Mono", "Fira Code", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      background: #232330;
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #2E2E3E;
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #059669;
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .preset-select {
+      background: #09090D;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .editor-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      min-height: 520px;
+      background: #09090D;
+      color: #E2E8F0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .preview-wrapper {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 600px;
+      background: #070709;
+      overflow: auto;
+    }
+
+    #receiptContainer {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    #receiptContainer svg {
+      width: 100%;
+      height: auto;
+      max-height: 700px;
+      display: block;
+    }
+
+    .controls-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Modal for ASCII view */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    pre#asciiOutput {
+      background: #000;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #10B981;
+      overflow-x: auto;
+      line-height: 1.35;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span style="font-size: 24px;">🧾</span>
+      <h1>receipt-renderer</h1>
+      <span class="badge">v1.0.0 Zero-Dep</span>
+    </div>
+    <div class="header-links">
+      <a href="https://github.com/Rynia/receipt-renderer" target="_blank" class="btn btn-primary">
+        ⭐ Star on GitHub
+      </a>
+      <a href="https://ryniastudios.netlify.app" target="_blank" class="btn">
+        🏛️ Rynia Studios
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- LEFT: JSON EDITOR -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Structured Data Input</span>
+        <select id="presetSelect" class="preset-select">
+          <option value="kalanla">🥦 KALANLA Pantry Rescue</option>
+          <option value="coffee">☕ Artisan Coffee Roasters</option>
+          <option value="fintech">💳 FinTech SaaS Invoice</option>
+          <option value="gaming">⚔️ RPG Quest Completion</option>
+        </select>
+      </div>
+      <div class="editor-wrapper">
+        <textarea id="jsonInput" spellcheck="false"></textarea>
+        <div class="controls-row">
+          <label style="font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="storyModeToggle">
+            9:16 Instagram Story Canvas Mode
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: LIVE RECEIPT PREVIEW -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Deterministic Preview</span>
+        <div style="display: flex; gap: 8px;">
+          <button id="btnViewAscii" class="btn" style="padding: 4px 10px; font-size: 12px;">💻 Terminal ASCII</button>
+          <button id="btnDownloadSvg" class="btn" style="padding: 4px 10px; font-size: 12px;">📥 Download SVG</button>
+        </div>
+      </div>
+      <div class="preview-wrapper">
+        <div id="receiptContainer"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ASCII MODAL -->
+  <div id="asciiModal" class="modal-overlay">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px;">Monospaced Terminal ASCII Output</h3>
+        <button id="btnCloseAscii" class="btn" style="padding: 2px 8px;">✕</button>
+      </div>
+      <pre id="asciiOutput"></pre>
+      <div style="margin-top: 14px; text-align: right;">
+        <button id="btnCopyAscii" class="btn btn-primary" style="font-size: 12px;">Copy ASCII Buffer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PRESETS
+    const PRESETS = {
+      kalanla: {
+        header: {
+          brand: "KALANLA ZERO-WASTE",
+          subtitle: "TERMINAL #04 · RYNIA KITCHEN OS",
+          meta: [
+            { label: "TX ID", value: "TR-IST // #8821" },
+            { label: "DATE", value: "26.09.2026 02:45" },
+            { label: "ENGINE", value: "DETERMINISTIC CHEF" }
+          ]
+        },
+        highlightBox: {
+          title: "RESCUED DISH // ZERO SPOILAGE",
+          subtitle: "Bayat Ekmek Mantisi (Artisan Skillet)"
+        },
+        items: [
+          { name: "Bayat Somun Ekmek (Stale Bread)", price: "₺24.00" },
+          { name: "Yogurt & Sarimsak Sosu", price: "₺32.50" },
+          { name: "Kiyma (Remaining 120g)", price: "₺85.00" },
+          { name: "Tereyagi & Nane Sosu", price: "₺18.00" }
+        ],
+        totals: [
+          { label: "SUBTOTAL SAVED", value: "₺159.50" },
+          { label: "EST. CARBON PREVENTED", value: "1.42 kg CO2e" },
+          { label: "NET FOOD VALUE PRESERVED", value: "₺159.50", emphasis: true }
+        ],
+        barcode: {
+          code: "8821092604",
+          text: "* 8821-0926-04 *"
+        },
+        footer: {
+          lines: ["THANK YOU FOR CHOOSING ZERO WASTE"],
+          poweredBy: "GENERATED VIA @RYNIA/RECEIPT-RENDERER"
+        }
+      },
+      coffee: {
+        header: {
+          brand: "COFFEE & CODE ROASTERS",
+          subtitle: "TERMINAL #01 · SOMA, SAN FRANCISCO",
+          meta: [
+            { label: "TICKET", value: "#0428" },
+            { label: "BARISTA", value: "ALEXANDER" }
+          ]
+        },
+        highlightBox: {
+          title: "ORDER STATUS",
+          subtitle: "Dine-In // Table 08"
+        },
+        items: [
+          { name: "Double Espresso (Ethiopia)", price: "$4.50" },
+          { name: "Oat Milk Cortado", price: "$5.25" },
+          { name: "Matcha Croissant", price: "$4.75" }
+        ],
+        totals: [
+          { label: "SUBTOTAL", value: "$14.50" },
+          { label: "TAX (8.5%)", value: "$1.23" },
+          { label: "TOTAL PAID", value: "$15.73", emphasis: true }
+        ],
+        barcode: {
+          code: "04289012",
+          text: "* SOMA-CC-0428 *"
+        },
+        footer: {
+          lines: ["BEANS SOURCED DIRECT TRADE", "ENJOY YOUR CUP!"],
+          poweredBy: "POWERED BY RYNIA STUDIOS"
+        }
+      },
+      fintech: {
+        header: {
+          brand: "STRIPE BILLING RECEIPT",
+          subtitle: "INVOICE #INV-2026-9912",
+          meta: [
+            { label: "CUSTOMER", value: "CUST_991823" },
+            { label: "PAID AT", value: "2026-09-26 UTC" }
+          ]
+        },
+        items: [
+          { name: "Pro Plan (Monthly)", price: "$29.00" },
+          { name: "API Usage (12k calls)", price: "$12.00" }
+        ],
+        totals: [
+          { label: "SUBTOTAL", value: "$41.00" },
+          { label: "VAT (20%)", value: "$8.20" },
+          { label: "AMOUNT CHARGED", value: "$49.20", emphasis: true }
+        ],
+        barcode: {
+          code: "99128821",
+          text: "TX_AUTH_APPROVED"
+        },
+        footer: {
+          lines: ["TRANSACTION SETTLED INSTANTLY"],
+          poweredBy: "POWERED BY @RYNIA/RECEIPT-RENDERER"
+        }
+      },
+      gaming: {
+        header: {
+          brand: "DUNGEON CRAWLER LOOT",
+          subtitle: "FLOOR 14 · SHADOW VAULT",
+          meta: [
+            { label: "HERO", value: "GUTS // BERSERK" },
+            { label: "DIFFICULTY", value: "NIGHTMARE" }
+          ]
+        },
+        highlightBox: {
+          title: "QUEST COMPLETED",
+          subtitle: "Dragon Slayer Sword Restored"
+        },
+        items: [
+          { name: "Dragon Scale x4", price: "+400 EXP" },
+          { name: "Titanium Ore x12", price: "+1,200 EXP" },
+          { name: "Ancient Relic Key", price: "+5,000 EXP" }
+        ],
+        totals: [
+          { label: "TOTAL EXP GAINED", value: "6,600 EXP" },
+          { label: "LEVEL UP", value: "LEVEL 82", emphasis: true }
+        ],
+        barcode: {
+          code: "777888999",
+          text: "QUEST_VERIFIED"
+        },
+        footer: {
+          lines: ["ACHIEVEMENT UNLOCKED: FEARLESS"],
+          poweredBy: "RYNIA STUDIOS ENGINE"
+        }
+      }
+    };
+
+    // Client-side SVG Renderer
+    function generateJaggedPath(startX, startY, width, toothCount, toothH, isTop) {
+      const toothW = width / toothCount;
+      let path = `M ${startX} ${startY}`;
+      for (let i = 0; i < toothCount; i++) {
+        const midX = startX + i * toothW + toothW / 2;
+        const endX = startX + (i + 1) * toothW;
+        const peakY = isTop ? startY - toothH : startY + toothH;
+        path += ` L ${midX} ${peakY} L ${endX} ${startY}`;
+      }
+      return path;
+    }
+
+    function generateBars(code) {
+      const bars = [2, 1, 2];
+      for (let i = 0; i < code.length; i++) {
+        const c = code.charCodeAt(i);
+        const p = (c * 7) % 16;
+        for (let b = 0; b < 4; b++) {
+          bars.push((p & (1 << b)) ? 3 : 1);
+          bars.push(1);
+        }
+      }
+      bars.push(2, 1, 2);
+      return bars;
+    }
+
+    function renderSVG(data, isStory) {
+      const w = isStory ? 720 : 420;
+      const h = isStory ? 1280 : 860;
+      const pw = isStory ? 540 : 380;
+      const px = (w - pw) / 2;
+      const py = isStory ? 100 : 25;
+      const ph = isStory ? 1080 : 810;
+      const font = '"Courier New", Courier, monospace';
+
+      let y = py + 45;
+      const cl = px + 28;
+      const cr = px + pw - 28;
+      const cc = px + pw / 2;
+      const cw = pw - 56;
+
+      let el = [];
+
+      if (isStory) {
+        el.push(`<defs>
+          <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#18181B" />
+            <stop offset="100%" stop-color="#09090B" />
+          </radialGradient>
+          <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000" flood-opacity="0.45" /></filter>
+        </defs>
+        <rect width="${w}" height="${h}" fill="url(#bg)" />`);
+      } else {
+        el.push(`<defs><filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.15" /></filter></defs>`);
+      }
+
+      const topEdge = generateJaggedPath(px, py, pw, 26, 5, true);
+      const btmEdge = generateJaggedPath(px, py + ph, pw, 26, 5, false);
+
+      el.push(`<g filter="url(#shadow)">
+        <rect x="${px}" y="${py}" width="${pw}" height="${ph}" fill="#FAF9F5" />
+        <path d="${topEdge}" fill="${isStory ? '#18181B' : '#070709'}" />
+        <path d="${btmEdge}" fill="${isStory ? '#09090B' : '#070709'}" />
+      </g>`);
+
+      // Brand
+      el.push(`<text x="${cc}" y="${y}" font-family="${font}" font-size="20" font-weight="900" text-anchor="middle" fill="#1A1A1A">${data.header.brand}</text>`);
+      y += 20;
+
+      if (data.header.subtitle) {
+        el.push(`<text x="${cc}" y="${y}" font-family="${font}" font-size="11" font-weight="600" text-anchor="middle" fill="#666">${data.header.subtitle}</text>`);
+        y += 18;
+      }
+
+      el.push(`<line x1="${cl}" y1="${y}" x2="${cr}" y2="${y}" stroke="#000" stroke-opacity="0.2" stroke-dasharray="4,4" />`);
+      y += 18;
+
+      // Meta
+      if (data.header.meta) {
+        data.header.meta.forEach(m => {
+          el.push(`<text x="${cl}" y="${y}" font-family="${font}" font-size="10" font-weight="600" fill="#666">${m.label}</text>`);
+          el.push(`<text x="${cr}" y="${y}" font-family="${font}" font-size="10" font-weight="700" text-anchor="end" fill="#1A1A1A">${m.value}</text>`);
+          y += 16;
+        });
+        el.push(`<line x1="${cl}" y1="${y}" x2="${cr}" y2="${y}" stroke="#000" stroke-opacity="0.2" stroke-dasharray="4,4" />`);
+        y += 20;
+      }
+
+      // Highlight Box
+      if (data.highlightBox) {
+        el.push(`<rect x="${cl}" y="${y}" width="${cw}" height="46" rx="4" fill="#000" fill-opacity="0.04" stroke="#000" stroke-opacity="0.12" stroke-dasharray="3,3" />`);
+        el.push(`<text x="${cl+12}" y="${y+18}" font-family="${font}" font-size="9" font-weight="700" fill="#666">${data.highlightBox.title}</text>`);
+        el.push(`<text x="${cl+12}" y="${y+34}" font-family="${font}" font-size="13" font-weight="800" fill="#1A1A1A">${data.highlightBox.subtitle}</text>`);
+        y += 64;
+      }
+
+      // Items
+      if (data.items) {
+        el.push(`<text x="${cl}" y="${y}" font-family="${font}" font-size="10" font-weight="700" fill="#666">ITEM DESCRIPTION</text>`);
+        el.push(`<text x="${cr}" y="${y}" font-family="${font}" font-size="10" font-weight="700" text-anchor="end" fill="#666">PRICE</text>`);
+        y += 8;
+        el.push(`<line x1="${cl}" y1="${y}" x2="${cr}" y2="${y}" stroke="#000" stroke-opacity="0.3" stroke-width="1.5" />`);
+        y += 18;
+
+        data.items.forEach((it, i) => {
+          const idx = String(i + 1).padStart(2, '0') + '.';
+          el.push(`<text x="${cl}" y="${y}" font-family="${font}" font-size="11" font-weight="600" fill="#666">${idx}</text>`);
+          el.push(`<text x="${cl+24}" y="${y}" font-family="${font}" font-size="11" font-weight="700" fill="#1A1A1A">${it.name}</text>`);
+          if (it.price) el.push(`<text x="${cr}" y="${y}" font-family="${font}" font-size="11" font-weight="700" text-anchor="end" fill="#1A1A1A">${it.price}</text>`);
+          y += 18;
+        });
+        el.push(`<line x1="${cl}" y1="${y}" x2="${cr}" y2="${y}" stroke="#000" stroke-opacity="0.2" stroke-dasharray="4,4" />`);
+        y += 20;
+      }
+
+      // Totals
+      if (data.totals) {
+        data.totals.forEach(t => {
+          const sz = t.emphasis ? 13 : 11;
+          const col = t.emphasis ? '#10B981' : '#1A1A1A';
+          el.push(`<text x="${cl}" y="${y}" font-family="${font}" font-size="${sz}" font-weight="${t.emphasis?900:600}" fill="#1A1A1A">${t.label}</text>`);
+          el.push(`<text x="${cr}" y="${y}" font-family="${font}" font-size="${sz}" font-weight="900" text-anchor="end" fill="${col}">${t.value}</text>`);
+          y += t.emphasis ? 24 : 18;
+        });
+        el.push(`<line x1="${cl}" y1="${y}" x2="${cr}" y2="${y}" stroke="#000" stroke-opacity="0.3" stroke-width="1.5" />`);
+        y += 22;
+      }
+
+      // Barcode
+      if (data.barcode) {
+        const bars = generateBars(data.barcode.code);
+        let bx = cc - (bars.reduce((a,b)=>a+b,0)*1.4)/2;
+        bars.forEach(bw => {
+          el.push(`<rect x="${bx.toFixed(1)}" y="${y}" width="${(bw*1.4).toFixed(1)}" height="30" fill="#111" />`);
+          bx += bw * 1.4 + 1;
+        });
+        y += 40;
+        el.push(`<text x="${cc}" y="${y}" font-family="${font}" font-size="9" text-anchor="middle" fill="#666" letter-spacing="2">${data.barcode.text || data.barcode.code}</text>`);
+        y += 22;
+      }
+
+      // Footer
+      if (data.footer) {
+        (data.footer.lines || []).forEach(l => {
+          el.push(`<text x="${cc}" y="${y}" font-family="${font}" font-size="9" font-weight="700" text-anchor="middle" fill="#666">${l}</text>`);
+          y += 14;
+        });
+        if (data.footer.poweredBy) {
+          y += 4;
+          el.push(`<text x="${cc}" y="${y}" font-family="${font}" font-size="8" text-anchor="middle" fill="#999">${data.footer.poweredBy}</text>`);
+        }
+      }
+
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}">${el.join('')}</svg>`;
+    }
+
+    // Render ASCII for modal
+    function renderASCII(data) {
+      const w = 38;
+      let out = [];
+      out.push('^v'.repeat(19));
+      out.push(data.header.brand.padStart(20 + data.header.brand.length/2).padEnd(w));
+      if (data.header.subtitle) out.push(data.header.subtitle.padStart(19 + data.header.subtitle.length/2).padEnd(w));
+      out.push('-'.repeat(w));
+      if (data.items) {
+        data.items.forEach((it, i) => {
+          let line = `0${i+1}. ${it.name}`;
+          if (line.length > 28) line = line.substring(0, 27) + '…';
+          const p = it.price || '';
+          out.push(line.padEnd(w - p.length) + p);
+        });
+      }
+      out.push('-'.repeat(w));
+      if (data.totals) {
+        data.totals.forEach(t => {
+          out.push(t.label.padEnd(w - String(t.value).length) + t.value);
+        });
+      }
+      out.push('='.repeat(w));
+      out.push('       || | |||| || | || |||| |       ');
+      out.push('          * VERIFIED *          ');
+      out.push('^v'.repeat(19));
+      return out.join('\n');
+    }
+
+    // Wiring UI
+    const textarea = document.getElementById('jsonInput');
+    const container = document.getElementById('receiptContainer');
+    const select = document.getElementById('presetSelect');
+    const toggle = document.getElementById('storyModeToggle');
+
+    function update() {
+      try {
+        const data = JSON.parse(textarea.value);
+        const svg = renderSVG(data, toggle.checked);
+        container.innerHTML = svg;
+      } catch (e) {
+        // syntax error while typing
+      }
+    }
+
+    select.addEventListener('change', () => {
+      textarea.value = JSON.stringify(PRESETS[select.value], null, 2);
+      update();
+    });
+
+    textarea.addEventListener('input', update);
+    toggle.addEventListener('change', update);
+
+    // Initial load
+    textarea.value = JSON.stringify(PRESETS.kalanla, null, 2);
+    update();
+
+    // Download SVG
+    document.getElementById('btnDownloadSvg').addEventListener('click', () => {
+      const data = JSON.parse(textarea.value);
+      const svg = renderSVG(data, toggle.checked);
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'thermal-receipt.svg';
+      a.click();
+    });
+
+    // ASCII Modal
+    const modal = document.getElementById('asciiModal');
+    document.getElementById('btnViewAscii').addEventListener('click', () => {
+      const data = JSON.parse(textarea.value);
+      document.getElementById('asciiOutput').innerText = renderASCII(data);
+      modal.classList.add('active');
+    });
+
+    document.getElementById('btnCloseAscii').addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    document.getElementById('btnCopyAscii').addEventListener('click', () => {
+      navigator.clipboard.writeText(document.getElementById('asciiOutput').innerText);
+      alert('ASCII receipt copied to clipboard!');
+    });
+  </script>
+</body>
+</html>
