@@ -1,0 +1,45 @@
+{
+  "name": "@rynia/receipt-renderer",
+  "version": "1.0.0",
+  "description": "Deterministic, zero-dependency engine turning structured JSON into retro 9:16 thermal receipts (SVG & ASCII) for React Native, Node.js & Web.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "demo": "ts-node examples/demo.ts"
+  },
+  "keywords": [
+    "receipt",
+    "thermal-receipt",
+    "svg",
+    "ascii",
+    "deterministic",
+    "retro-ui",
+    "react-native",
+    "expo",
+    "typescript",
+    "zero-dependencies"
+  ],
+  "author": "Muharrem Özmen (@Rynia) <ryniastudios@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rynia/receipt-renderer.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rynia/receipt-renderer/issues"
+  },
+  "homepage": "https://github.com/Rynia/receipt-renderer#readme"
+}

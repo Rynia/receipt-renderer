@@ -1,0 +1,458 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1280" width="720" height="1280">
+    
+      <defs>
+        <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#18181B" />
+          <stop offset="100%" stop-color="#09090B" />
+        </radialGradient>
+        <filter id="paperShadow" x="-10%" y="-5%" width="120%" height="115%">
+          <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.45" />
+        </filter>
+      </defs>
+      <rect width="720" height="1280" fill="url(#bgGrad)" />
+    
+
+    <g filter="url(#paperShadow)">
+      <!-- Main Paper Body -->
+      <rect x="90" y="100" width="540" height="1080" fill="#FAF9F5" />
+      <!-- Top Jagged Tear Edge -->
+      <path d="M 90 100 L 99.64285714285714 95 L 109.28571428571428 100 L 118.92857142857142 95 L 128.57142857142856 100 L 138.2142857142857 95 L 147.85714285714286 100 L 157.5 95 L 167.14285714285714 100 L 176.78571428571428 95 L 186.42857142857142 100 L 196.07142857142856 95 L 205.71428571428572 100 L 215.35714285714286 95 L 225 100 L 234.64285714285714 95 L 244.28571428571428 100 L 253.92857142857142 95 L 263.57142857142856 100 L 273.2142857142857 95 L 282.85714285714283 100 L 292.5 95 L 302.1428571428571 100 L 311.7857142857143 95 L 321.42857142857144 100 L 331.0714285714286 95 L 340.71428571428567 100 L 350.35714285714283 95 L 360 100 L 369.64285714285717 95 L 379.2857142857143 100 L 388.92857142857144 95 L 398.57142857142856 100 L 408.2142857142857 95 L 417.85714285714283 100 L 427.5 95 L 437.1428571428571 100 L 446.7857142857143 95 L 456.4285714285714 100 L 466.07142857142856 95 L 475.71428571428567 100 L 485.35714285714283 95 L 495 100 L 504.64285714285717 95 L 514.2857142857142 100 L 523.9285714285713 95 L 533.5714285714286 100 L 543.2142857142857 95 L 552.8571428571429 100 L 562.5 95 L 572.1428571428571 100 L 581.7857142857142 95 L 591.4285714285713 100 L 601.0714285714284 95 L 610.7142857142857 100 L 620.3571428571428 95 L 630 100" fill="#18181B" />
+      <!-- Bottom Jagged Tear Edge -->
+      <path d="M 90 1180 L 99.64285714285714 1185 L 109.28571428571428 1180 L 118.92857142857142 1185 L 128.57142857142856 1180 L 138.2142857142857 1185 L 147.85714285714286 1180 L 157.5 1185 L 167.14285714285714 1180 L 176.78571428571428 1185 L 186.42857142857142 1180 L 196.07142857142856 1185 L 205.71428571428572 1180 L 215.35714285714286 1185 L 225 1180 L 234.64285714285714 1185 L 244.28571428571428 1180 L 253.92857142857142 1185 L 263.57142857142856 1180 L 273.2142857142857 1185 L 282.85714285714283 1180 L 292.5 1185 L 302.1428571428571 1180 L 311.7857142857143 1185 L 321.42857142857144 1180 L 331.0714285714286 1185 L 340.71428571428567 1180 L 350.35714285714283 1185 L 360 1180 L 369.64285714285717 1185 L 379.2857142857143 1180 L 388.92857142857144 1185 L 398.57142857142856 1180 L 408.2142857142857 1185 L 417.85714285714283 1180 L 427.5 1185 L 437.1428571428571 1180 L 446.7857142857143 1185 L 456.4285714285714 1180 L 466.07142857142856 1185 L 475.71428571428567 1180 L 485.35714285714283 1185 L 495 1180 L 504.64285714285717 1185 L 514.2857142857142 1180 L 523.9285714285713 1185 L 533.5714285714286 1180 L 543.2142857142857 1185 L 552.8571428571429 1180 L 562.5 1185 L 572.1428571428571 1180 L 581.7857142857142 1185 L 591.4285714285713 1180 L 601.0714285714284 1185 L 610.7142857142857 1180 L 620.3571428571428 1185 L 630 1180" fill="#09090B" />
+    </g>
+  
+
+    <text x="360" y="145" font-family=""Courier New", Courier, monospace, monospace" font-size="20" font-weight="900" text-anchor="middle" fill="#1A1A1A" letter-spacing="1">
+      KALANLA ZERO-WASTE
+    </text>
+  
+
+      <text x="360" y="165" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" text-anchor="middle" fill="#666666" letter-spacing="0.5">
+        TERMINAL #04 · RYNIA KITCHEN OS
+      </text>
+    
+<line x1="120" y1="183" x2="600" y2="183" stroke="#000000" stroke-opacity="0.2" stroke-width="1.2" stroke-dasharray="4,4" />
+
+        <text x="120" y="201" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="600" fill="#666666">
+          TX ID
+        </text>
+        <text x="600" y="201" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="700" text-anchor="end" fill="#1A1A1A">
+          TR-IST // #8821
+        </text>
+      
+
+        <text x="120" y="217" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="600" fill="#666666">
+          DATE
+        </text>
+        <text x="600" y="217" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="700" text-anchor="end" fill="#1A1A1A">
+          26.09.2026 02:24
+        </text>
+      
+
+        <text x="120" y="233" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="600" fill="#666666">
+          MODE
+        </text>
+        <text x="600" y="233" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="700" text-anchor="end" fill="#1A1A1A">
+          DETERMINISTIC CHEF
+        </text>
+      
+<line x1="120" y1="249" x2="600" y2="249" stroke="#000000" stroke-opacity="0.2" stroke-width="1.2" stroke-dasharray="4,4" />
+
+      <rect x="120" y="269" width="480" height="46" rx="4" fill="#000000" fill-opacity="0.04" stroke="#000000" stroke-opacity="0.12" stroke-dasharray="3,3" />
+      <text x="132" y="287" font-family=""Courier New", Courier, monospace, monospace" font-size="9" font-weight="700" fill="#666666">
+        RESCUED DISH // ZERO SPOILAGE
+      </text>
+      <text x="132" y="303" font-family=""Courier New", Courier, monospace, monospace" font-size="13" font-weight="800" fill="#1A1A1A">
+        Bayat Ekmek Mantisi (Artisan Crouton Skillet)
+      </text>
+    
+
+      <text x="120" y="335" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="700" fill="#666666">
+        ITEM DESCRIPTION
+      </text>
+      <text x="600" y="335" font-family=""Courier New", Courier, monospace, monospace" font-size="10" font-weight="700" text-anchor="end" fill="#666666">
+        AMOUNT
+      </text>
+    
+<line x1="120" y1="343" x2="600" y2="343" stroke="#000000" stroke-opacity="0.3" stroke-width="1.5" />
+
+        <text x="120" y="361" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          01.
+        </text>
+        <text x="146" y="361" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" fill="#1A1A1A">
+          Bayat Somun Ekmek (Stale Bread)
+        </text>
+      
+
+          <text x="600" y="361" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" text-anchor="end" fill="#1A1A1A">
+            ₺24.00
+          </text>
+        
+
+        <text x="120" y="379" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          02.
+        </text>
+        <text x="146" y="379" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" fill="#1A1A1A">
+          Yogurt &amp; Sarimsak Sosu
+        </text>
+      
+
+          <text x="600" y="379" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" text-anchor="end" fill="#1A1A1A">
+            ₺32.50
+          </text>
+        
+
+        <text x="120" y="397" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          03.
+        </text>
+        <text x="146" y="397" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" fill="#1A1A1A">
+          Kiyma (Remaining 120g)
+        </text>
+      
+
+          <text x="600" y="397" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" text-anchor="end" fill="#1A1A1A">
+            ₺85.00
+          </text>
+        
+
+        <text x="120" y="415" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          04.
+        </text>
+        <text x="146" y="415" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" fill="#1A1A1A">
+          Tereyagi &amp; Nane Sosu
+        </text>
+      
+
+          <text x="600" y="415" font-family=""Courier New", Courier, monospace, monospace" font-size="12" font-weight="700" text-anchor="end" fill="#1A1A1A">
+            ₺18.00
+          </text>
+        
+<line x1="120" y1="433" x2="600" y2="433" stroke="#000000" stroke-opacity="0.2" stroke-width="1.2" stroke-dasharray="4,4" />
+
+        <text x="120" y="453" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          SUBTOTAL RESCUED
+        </text>
+        <text x="600" y="453" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="900" text-anchor="end" fill="#1A1A1A">
+          ₺159.50
+        </text>
+      
+
+        <text x="120" y="471" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="600" fill="#666666">
+          EST. CARBON SAVED
+        </text>
+        <text x="600" y="471" font-family=""Courier New", Courier, monospace, monospace" font-size="11" font-weight="900" text-anchor="end" fill="#1A1A1A">
+          1.42 kg CO2e
+        </text>
+      
+
+        <text x="120" y="489" font-family=""Courier New", Courier, monospace, monospace" font-size="14" font-weight="900" fill="#1A1A1A">
+          NET FOOD VALUE SAVED
+        </text>
+        <text x="600" y="489" font-family=""Courier New", Courier, monospace, monospace" font-size="14" font-weight="900" text-anchor="end" fill="#10B981">
+          ₺159.50
+        </text>
+      
+<line x1="120" y1="513" x2="600" y2="513" stroke="#000000" stroke-opacity="0.3" stroke-width="1.5" />
+
+        <rect x="261.0" y="537" width="3.0" height="34" fill="#111111" />
+      
+
+        <rect x="265.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="267.9" y="537" width="3.0" height="34" fill="#111111" />
+      
+
+        <rect x="272.1" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="274.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="277.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="280.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="282.9" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="288.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="291.3" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="297.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="299.7" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="302.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="305.1" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="307.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="310.5" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="316.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="318.9" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="324.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="327.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="330.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="332.7" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="338.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="341.1" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="343.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="346.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="349.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="351.9" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="357.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="360.3" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="366.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="368.7" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="371.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="374.1" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="379.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="382.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="385.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="387.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="390.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="393.3" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="399.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="401.7" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="404.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="407.1" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="412.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="415.5" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="421.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="423.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="426.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="429.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="432.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="434.7" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="437.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="440.1" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="445.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="448.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="451.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="453.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="456.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="459.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="462.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="464.7" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="470.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="473.1" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="478.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="481.5" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="487.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="489.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="492.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="495.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="498.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="500.7" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="506.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="509.1" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="511.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="514.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="517.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="519.9" y="537" width="4.5" height="34" fill="#111111" />
+      
+
+        <rect x="525.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="528.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="531.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="533.7" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="536.4" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="539.1" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="541.8" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="544.5" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="547.2" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="549.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="552.6" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="555.3" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="558.0" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="560.7" y="537" width="3.0" height="34" fill="#111111" />
+      
+
+        <rect x="564.9" y="537" width="1.5" height="34" fill="#111111" />
+      
+
+        <rect x="567.6" y="537" width="3.0" height="34" fill="#111111" />
+      
+
+      <text x="360" y="583" font-family=""Courier New", Courier, monospace, monospace" font-size="9" font-weight="600" text-anchor="middle" fill="#666666" letter-spacing="2">
+        * 8821-0926-024 *
+      </text>
+    
+
+      <text x="360" y="605" font-family=""Courier New", Courier, monospace, monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#666666" letter-spacing="1">
+        ALL INGREDIENTS SAVED FROM EXPIRY
+      </text>
+    
+
+      <text x="360" y="619" font-family=""Courier New", Courier, monospace, monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#666666" letter-spacing="1">
+        THANK YOU FOR PROTECTING OUR PLANET
+      </text>
+    
+
+    <text x="360" y="639" font-family=""Courier New", Courier, monospace, monospace" font-size="8" font-weight="600" text-anchor="middle" fill="#999999" letter-spacing="0.5">
+      GENERATED VIA @RYNIA/RECEIPT-RENDERER • POWERED BY KALANLA
+    </text>
+  
+  </svg>
