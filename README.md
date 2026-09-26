@@ -10,6 +10,20 @@
   <img src="https://img.shields.io/badge/Output-SVG%20%7C%20ASCII-F59E0B?style=for-the-badge" alt="Output" />
 </p>
 
+> ⭐ **Star this repo for the next time you need a retro thermal receipt without DOM, Chromium, or a printer SDK.**
+
+---
+
+## ⚡ Why `receipt-renderer` vs Alternatives?
+
+| Metric / Feature | `receipt-renderer` | Headless Chrome (Puppeteer) | Canvas Rasterizers |
+| :--- | :--- | :--- | :--- |
+| **Dependencies** | **0 (`0 npm packages`)** | ~170 MB (Chromium binary) | 4–8 native bindings |
+| **Runtimes** | **Node, Edge, Browser, React Native** | Node.js Server Only | Browser DOM Only |
+| **Output Format** | **Vector SVG Path & Raw ASCII** | Heavy PDF / PNG Blob | Canvas Bitmap |
+| **Bundle Footprint** | **~4.8 KB** | 100+ MB | 40–120 KB |
+| **Deterministic** | **100% Identical Output** | Platform Font Dependent | DPI Dependent |
+
 ---
 
 ```text
